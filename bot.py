@@ -1,5 +1,7 @@
 import os
 import asyncio
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
 from urllib.parse import urlparse
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
@@ -24,6 +26,7 @@ s2tw = OpenCC('s2tw.json').convert
 
 
 @bot.on_message(filters.command("start"))
+updater = Updater(bot_token=TG_BOT_TOKEN, use_context=True)
 async def start(client, message):
    if message.chat.type == 'private':
        await Jebot.send_message(
